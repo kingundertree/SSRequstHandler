@@ -1,0 +1,58 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - SSRequstHandler (0.0.1):
+    - AFNetworking
+    - SSRequstHandler/Category (= 0.0.1)
+    - SSRequstHandler/Others (= 0.0.1)
+    - SSRequstHandler/SSBaseApi (= 0.0.1)
+    - SSRequstHandler/SSRequestError (= 0.0.1)
+    - SSRequstHandler/SSRequestHandler (= 0.0.1)
+    - SSRequstHandler/SSRequestPlugin (= 0.0.1)
+    - SSRequstHandler/SSRequestProtocol (= 0.0.1)
+    - SSRequstHandler/SSResponse (= 0.0.1)
+  - SSRequstHandler/Category (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/Others (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSBaseApi (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestError (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestHandler (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestPlugin (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestProtocol (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSResponse (0.0.1):
+    - AFNetworking
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - SSRequstHandler (from `../../SSRequstHandler`)
+
+EXTERNAL SOURCES:
+  SSRequstHandler:
+    :path: ../../SSRequstHandler
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  SSRequstHandler: 336c9577a2536b544c9c5d32b936ff2380d674a5
+
+PODFILE CHECKSUM: 8fc51ed4cdfc5587ec3faeef9aedc34d5564b53d
+
+COCOAPODS: 1.4.0
