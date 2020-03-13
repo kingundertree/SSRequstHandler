@@ -13,6 +13,7 @@
 #import "SSRequestSerializer.h"
 #import "NSError+SSRequest.h"
 #import "NSHTTPURLResponse+SSRequest.h"
+#import "SSRequestDebugLog.h"
 
 // block parmas
 /*
@@ -159,9 +160,9 @@ void runOnMainQueue(void (^block)(void)) {
     }
     
     // 2. 获取urlString
-    NSString *urlString = [NSString requestUrlStringForBaseApi:baseApi];
+    NSString *urlString = [self _requestUrlStringForBaseApi:baseApi];
     // 3. 获取method
-    NSString *methodString = [NSString methodMap:baseApi];
+    NSString *methodString = [self _methodMap:baseApi];
     // 4. 获取参数
     id params = [baseApi requestArgument];
     // 5. 是否通过block组装数据
@@ -190,12 +191,14 @@ void runOnMainQueue(void (^block)(void)) {
                                         error:(NSError *_Nullable __autoreleasing *)error {
     __weak typeof(self) this = self;
     __block NSURLSessionDataTask *dataTask;
-    [sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    dataTask = [sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         [this _handSSResponseForTask:dataTask
                      sessionManager:sessionManager
                      responseObject:response
                               error:error];
     }];
+    
+    return dataTask;
 }
 
 // 下载成功前，resume data会指定到缓存目录，SSRequestHandler会自定义缓存目录，用户下载任务的重启和续传、续存，用户不需要关心
@@ -478,6 +481,35 @@ void runOnMainQueue(void (^block)(void)) {
 
 - (NSString *)_combineBaseApiKey:(NSInteger)sessionType identifier:(NSInteger)identifier {
     return [NSString stringWithFormat:@"%@-%@", @(sessionType), @(identifier ?: 0)];
+}
+
+// MARK:- request host + path
+- (NSString *)_requestUrlStringForBaseApi:(SSBaseApi *)baseApi {
+    NSString *requestPath = [baseApi requestPath];
+    if ([requestPath hasPrefix:@"http"] || [requestPath hasPrefix:@"https"]) {
+        return requestPath;
+    }
+    
+    NSString *hostPath = [baseApi.service baseUrl];
+    return [NSString stringWithFormat:@"%@%@", hostPath, requestPath];
+}
+
+- (NSString *)_methodMap:(SSRequestMethod)method {
+    switch (method) {
+        case SSRequestMethodPOST:
+            return @"POST";
+        case SSRequestMethodHEAD:
+            return @"HEAD";
+        case SSRequestMethodPUT:
+            return @"PUT";
+        case SSRequestMethodDELETE:
+            return @"DELETE";
+        case SSRequestMethodPATCH:
+            return @"PATCH";
+            
+        default:
+            return @"GET";
+    }
 }
 
 // MARK:- 下载缓存路径

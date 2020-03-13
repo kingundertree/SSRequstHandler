@@ -9,9 +9,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#ifdef DEBUG
+#    define SSLog(fmt, ...) NSLog((@"%s #%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#    define SSLog(...)
+#endif
+
+
 @interface SSRequestDebugLog : NSObject
 
-+ (void)showDebugInfo:(id)object;
++ (instancetype)sharedInstance;
+
+- (void)debugInfo:(id)object;
 
 @end
 

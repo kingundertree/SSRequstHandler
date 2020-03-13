@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSBaseApi.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,12 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 // string md5计算
 + (NSString *)md5StringFromCString:(NSString *)string;
-
-// 获取request string
-+ (NSString *)requestUrlStringForBaseApi:(SSBaseApi *)baseApi;
-
-// 获取method string
-+ (NSString *)methodMap:(SSRequestMethod)method;
 
 @end
 

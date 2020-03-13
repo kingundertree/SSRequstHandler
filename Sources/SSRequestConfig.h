@@ -12,10 +12,8 @@
 #define SSRequestDownloadFolderName @"SSRequestDownload"
 // SSRequest SSRequestResultCode
 #define SSRequestResultCode @"SSRequestResultCode"
-// SSRequest error Domain
 //NSString *const SSRequestErrorDomain = @"SSRequest.Error.Domain";
 #define SSRequestErrorDomain @"SSRequest.Error.Domain"
-
 
 
 #endif /* SSRequestHandler_h */

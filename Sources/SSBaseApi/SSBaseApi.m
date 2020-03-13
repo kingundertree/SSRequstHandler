@@ -78,6 +78,10 @@
     return nil;
 }
 
+- (NSString *)downloadPath {
+    return nil;
+}
+
 - (id)requestArgument {
     if (self.queries.allKeys.count > 0) {
         self.queries;

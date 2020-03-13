@@ -8,15 +8,18 @@
 #import "SSRequestDebugLog.h"
 #import "SSRequestSettingConfig.h"
 
-#ifdef DEBUG
-#    define SSLog(fmt, ...) NSLog((@"%s #%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#else
-#    define SSLog(...)
-#endif
-
 @implementation SSRequestDebugLog
 
-+ (void)showDebugInfo:(id)object {
++ (instancetype)sharedInstance {
+    static dispatch_once_t onceToken;
+    static SSRequestDebugLog *sharedInstance;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[SSRequestDebugLog alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (void)debugInfo:(id)object {
     if ([SSRequestSettingConfig defaultSettingConfig].isShowDebugInfo == true) {
         SSLog(@"%@", object);
     }

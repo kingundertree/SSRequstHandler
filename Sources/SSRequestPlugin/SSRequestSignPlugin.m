@@ -69,7 +69,7 @@
                 // 排序
                 revals = [revals sortedArrayUsingSelector:@selector(compare:)];
                 
-//                SSRequestDebugLog.showDebugInfo(revals);
+                [[SSRequestDebugLog sharedInstance] debugInfo:revals];
                 
                 return [revals componentsJoinedByString:@"&"];
             }

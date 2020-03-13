@@ -36,31 +36,4 @@
     return outputString;
 }
 
-+ (NSString *)requestUrlStringForBaseApi:(SSBaseApi *)baseApi {
-    NSString *requestPath = [baseApi requestPath];
-    if ([requestPath hasPrefix:@"http"] || [requestPath hasPrefix:@"https"]) {
-        return requestPath;
-    }
-    
-    NSString *hostPath = [baseApi.service baseUrl];
-    return [NSString stringWithFormat:@"%@%@", hostPath, requestPath];
-}
-
-+ (NSString *)methodMap:(SSRequestMethod)method {
-    switch (method) {
-        case SSRequestMethodPOST:
-            return @"POST";
-        case SSRequestMethodHEAD:
-            return @"HEAD";
-        case SSRequestMethodPUT:
-            return @"PUT";
-        case SSRequestMethodDELETE:
-            return @"DELETE";
-        case SSRequestMethodPATCH:
-            return @"PATCH";
-            
-        default:
-            return @"GET";
-    }
-}
 @end
