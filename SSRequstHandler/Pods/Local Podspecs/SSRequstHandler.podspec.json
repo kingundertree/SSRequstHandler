@@ -63,6 +63,16 @@
       "name": "Others",
       "source_files": "Sources/Others/*.{c,h,m,swift}",
       "public_header_files": "Sources/Others/*.h"
+    },
+    {
+      "name": "SSRequestSetting",
+      "source_files": "Sources/SSRequestSetting/*.{c,h,m,swift}",
+      "public_header_files": "Sources/SSRequestSetting/*.h"
+    },
+    {
+      "name": "SSRequestDebugLog",
+      "source_files": "Sources/SSRequestDebugLog/*.{c,h,m,swift}",
+      "public_header_files": "Sources/SSRequestDebugLog/*.h"
     }
   ]
 }

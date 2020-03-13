@@ -65,9 +65,17 @@ typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> formData);
 @property (nonatomic, copy) SSRequestHandlerCallback requestHandlerCallback;
 // download process callback
 @property (nonatomic, copy) SSRequestHandlerProgressBlock progressCallback;
+// request path
+@property (nonatomic, copy) NSString *path;
+// 自定义入参实现, swift 可以通过subscript实现。不直接合并到URL，待后续POST、GET继续处理
+@property (nonatomic, strong) NSMutableDictionary *queries;
+
+// BaseApi 初始化
+- (instancetype)initWithPath:(NSString *)path queries:(NSDictionary *)queries;
 
 // 通过SSBaseApi发生请求
 - (void)requestWithCompletionBlock:(SSRequestHandlerCallback)requestHandlerCallback;
+
 // 取消请求
 - (void)cancelRequest;
 
@@ -89,7 +97,7 @@ typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> formData);
 // 认证信息
 - (NSArray *)requestAuthorizationHeaderFieldArray;
 
-// header信息，建议通过plugin实现，实现统一简洁
+// 自定义header参数
 - (NSDictionary *)requestHeaderFieldValueDictionary;
 
 // 请求服务，定义默认host

@@ -19,16 +19,20 @@ PODS:
     - SSRequstHandler/Category (= 0.0.1)
     - SSRequstHandler/Others (= 0.0.1)
     - SSRequstHandler/SSBaseApi (= 0.0.1)
+    - SSRequstHandler/SSRequestDebugLog (= 0.0.1)
     - SSRequstHandler/SSRequestError (= 0.0.1)
     - SSRequstHandler/SSRequestHandler (= 0.0.1)
     - SSRequstHandler/SSRequestPlugin (= 0.0.1)
     - SSRequstHandler/SSRequestProtocol (= 0.0.1)
+    - SSRequstHandler/SSRequestSetting (= 0.0.1)
     - SSRequstHandler/SSResponse (= 0.0.1)
   - SSRequstHandler/Category (0.0.1):
     - AFNetworking
   - SSRequstHandler/Others (0.0.1):
     - AFNetworking
   - SSRequstHandler/SSBaseApi (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestDebugLog (0.0.1):
     - AFNetworking
   - SSRequstHandler/SSRequestError (0.0.1):
     - AFNetworking
@@ -37,6 +41,8 @@ PODS:
   - SSRequstHandler/SSRequestPlugin (0.0.1):
     - AFNetworking
   - SSRequstHandler/SSRequestProtocol (0.0.1):
+    - AFNetworking
+  - SSRequstHandler/SSRequestSetting (0.0.1):
     - AFNetworking
   - SSRequstHandler/SSResponse (0.0.1):
     - AFNetworking
@@ -51,7 +57,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  SSRequstHandler: 336c9577a2536b544c9c5d32b936ff2380d674a5
+  SSRequstHandler: 61bde1044f69e51b313989fcdde695a295f418de
 
 PODFILE CHECKSUM: 8fc51ed4cdfc5587ec3faeef9aedc34d5564b53d
 

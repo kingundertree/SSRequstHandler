@@ -16,6 +16,8 @@
 //NSString *const SSRequestErrorDomain = @"SSRequest.Error.Domain";
 #define SSRequestErrorDomain @"SSRequest.Error.Domain"
 
+
+
 #endif /* SSRequestHandler_h */
 
 

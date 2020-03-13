@@ -19,6 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 // plugins
 @property (nonatomic, strong) NSArray *plugins;
 
+// secret
+@property (nonatomic, copy) NSString *secret;
+
+// appId
+@property (nonatomic, copy) NSString *appId;
+
+// deviceId
+@property (nonatomic, copy) NSString *deviceId;
+
+// isOpen debug
+@property (nonatomic, assign) BOOL isShowDebugInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END

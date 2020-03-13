@@ -57,6 +57,16 @@ s.source           = { :git => '', :tag => s.version.to_s }
       ss.public_header_files = 'Sources/Others/*.h'
   end
 
+  s.subspec 'SSRequestSetting' do |ss|
+      ss.source_files = 'Sources/SSRequestSetting/*.{c,h,m,swift}'
+      ss.public_header_files = 'Sources/SSRequestSetting/*.h'
+  end
+
+  s.subspec 'SSRequestDebugLog' do |ss|
+      ss.source_files = 'Sources/SSRequestDebugLog/*.{c,h,m,swift}'
+      ss.public_header_files = 'Sources/SSRequestDebugLog/*.h'
+  end
+  
   s.dependency 'AFNetworking'
   
 end

@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "SSRequestHandlerC.h"
 #import "SSBaseApi.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -7,9 +7,9 @@
 
 #import "NSString+SSRequest.h"
 #import "SSRequestConfig.h"
+#include "SSRequestHandlerC.h"
 
 @implementation NSString (SSRequest)
-
 
 + (NSString *)defaultDownloadTempCacheFolder {
     NSFileManager *fileManager = [NSFileManager new];

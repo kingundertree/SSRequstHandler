@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "FFHomeApi.h"
+#import "SSRequestKit.h"
+//#import "SSRequestSettingConfig.h"
 
 @interface ViewController ()
 
@@ -20,8 +22,15 @@
     // Do any additional setup after loading the view.
     NSLog(@"ViewController did launch");
     
+    [SSRequestSettingConfig defaultSettingConfig].appId = @"100001";
+    [SSRequestSettingConfig defaultSettingConfig].deviceId = @"mnsdnjenrjkjke38dajdjwejd";
+    [SSRequestSettingConfig defaultSettingConfig].token = @"dskjjjjdj3dsjs";
+    [SSRequestSettingConfig defaultSettingConfig].secret = @"eiifs9wesdfsjes";
+    [SSRequestSettingConfig defaultSettingConfig].plugins = @[[SSRequestTokenPlugin new], [SSRequestSignPlugin new], [SSRequestErrorFilterPlugin new]];
+    [SSRequestSettingConfig defaultSettingConfig].isShowDebugInfo = true;
+    
     // OC 模式request
-    FFHomeApi *homeApi = [FFHomeApi new];
+    FFHomeApi *homeApi = [[FFHomeApi alloc] initWithPath:@"" queries:nil];
     __weak typeof(self) this = self;
     [homeApi requestWithCompletionBlock:^(SSResponse * _Nonnull response, NSError * _Nonnull error) {
         // todo
