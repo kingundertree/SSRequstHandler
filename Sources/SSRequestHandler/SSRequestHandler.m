@@ -14,6 +14,7 @@
 #import "NSError+SSRequest.h"
 #import "NSHTTPURLResponse+SSRequest.h"
 #import "SSRequestDebugLog.h"
+#import "SSRequestSettingConfig.h"
 
 // block parmas
 /*
@@ -136,14 +137,16 @@ void runOnMainQueue(void (^block)(void)) {
     AFURLSessionManager *sesson = [self _sesionForBaseApi:baseApi];
     if (baseApi.downloadPath) {
         // 下载request task
-        task = [self _requestForDownloadTask:sesson request:request downloadPath:baseApi.downloadPath processBlock:baseApi.progressCallback error:error];
+        task = [self _requestForDownloadTask:sesson request:blockRequest downloadPath:baseApi.downloadPath processBlock:baseApi.progressCallback error:error];
     } else {
         // 普通request task
-        task = [self _requestForDataTask:sesson request:request error:error];
+        task = [self _requestForDataTask:sesson request:blockRequest error:error];
     }
+    // 请求前日志
+    [[SSRequestDebugLog sharedInstance] showReponseStartInfo:baseApi request:blockRequest];
     
+    [task resume];
     baseApi.requestTask = task;
-    
     [self _doRequsetBind:baseApi];
     
     return nil;
@@ -160,9 +163,9 @@ void runOnMainQueue(void (^block)(void)) {
     }
     
     // 2. 获取urlString
-    NSString *urlString = [self _requestUrlStringForBaseApi:baseApi];
+    NSString *baseApiString = [NSString requestUrlStringForBaseApi:baseApi];
     // 3. 获取method
-    NSString *methodString = [self _methodMap:baseApi];
+    NSString *methodString = [NSString methodMap:baseApi.mehod];
     // 4. 获取参数
     id params = [baseApi requestArgument];
     // 5. 是否通过block组装数据
@@ -171,13 +174,13 @@ void runOnMainQueue(void (^block)(void)) {
     NSMutableURLRequest *mutableURLRequest;
     if (constructingBlock) {
         mutableURLRequest = [reqeustSerializer multipartFormRequestWithMethod:methodString
-                                                                    URLString:urlString
+                                                                    URLString:baseApiString
                                                                    parameters:params
                                                     constructingBodyWithBlock:constructingBlock
                                                                         error:&error];
     } else {
         mutableURLRequest = [reqeustSerializer requestWithMethod:methodString
-                                                       URLString:urlString
+                                                       URLString:baseApiString
                                                       parameters:params
                                                            error:&error];
     }
@@ -191,11 +194,12 @@ void runOnMainQueue(void (^block)(void)) {
                                         error:(NSError *_Nullable __autoreleasing *)error {
     __weak typeof(self) this = self;
     __block NSURLSessionDataTask *dataTask;
-    dataTask = [sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    dataTask = [sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error) {
         [this _handSSResponseForTask:dataTask
                      sessionManager:sessionManager
-                     responseObject:response
-                              error:error];
+                     responseObject:responseObject
+                             request:request
+                               error:error];
     }];
     
     return dataTask;
@@ -248,7 +252,8 @@ void runOnMainQueue(void (^block)(void)) {
                 [this _handSSResponseForTask:downloadTask
                              sessionManager:sessionManager
                              responseObject:response
-                                      error:error];
+                                     request:request
+                                       error:error];
             }];
             
             isResumeDataSuc = YES;
@@ -268,10 +273,11 @@ void runOnMainQueue(void (^block)(void)) {
             [this _handSSResponseForTask:downloadTask
                          sessionManager:sessionManager
                          responseObject:response
+                                 request:request
                                   error:error];
         }];
     }
-
+    
     return downloadTask;
 }
 
@@ -279,6 +285,7 @@ void runOnMainQueue(void (^block)(void)) {
 - (void)_handSSResponseForTask:(NSURLSessionTask *)task
                sessionManager:(AFURLSessionManager *)sessionManager
                responseObject:(id)responseObject
+                      request:(NSURLRequest *)request
                         error:(NSError *)error {
     SSBaseApi *baseApi = [self _taskForBaseApi:task session:sessionManager];
     if (!baseApi) {
@@ -323,11 +330,11 @@ void runOnMainQueue(void (^block)(void)) {
                                                       responseString:responseString
                                                                error:&error];
 
-    [self _doResponseFinish:baseApi response:ssResponse error:error];
+    [self _doResponseFinish:baseApi response:ssResponse request:request error:error];
 }
 
 // response callback
-- (void)_doResponseFinish:(SSBaseApi *)baseApi response:(SSResponse *)response error:(NSError *)error {
+- (void)_doResponseFinish:(SSBaseApi *)baseApi response:(SSResponse *)response request:(NSURLRequest *)request error:(NSError *)error {
     SSRequestHandlerCallback requestHandlerCallback = baseApi.requestHandlerCallback;
     if (requestHandlerCallback) {
         for (id <SSRequestProtocal>plugin in self.plugins) {
@@ -337,6 +344,8 @@ void runOnMainQueue(void (^block)(void)) {
         }
         
         runOnMainQueue(^{
+            // 打印请求结束信息
+            [[SSRequestDebugLog sharedInstance] showReponseEndInfo:baseApi response:response request:request];
             requestHandlerCallback(response, error);
         });
     
@@ -484,40 +493,14 @@ void runOnMainQueue(void (^block)(void)) {
 }
 
 // MARK:- request host + path
-- (NSString *)_requestUrlStringForBaseApi:(SSBaseApi *)baseApi {
-    NSString *requestPath = [baseApi requestPath];
-    if ([requestPath hasPrefix:@"http"] || [requestPath hasPrefix:@"https"]) {
-        return requestPath;
-    }
-    
-    NSString *hostPath = [baseApi.service baseUrl];
-    return [NSString stringWithFormat:@"%@%@", hostPath, requestPath];
-}
 
-- (NSString *)_methodMap:(SSRequestMethod)method {
-    switch (method) {
-        case SSRequestMethodPOST:
-            return @"POST";
-        case SSRequestMethodHEAD:
-            return @"HEAD";
-        case SSRequestMethodPUT:
-            return @"PUT";
-        case SSRequestMethodDELETE:
-            return @"DELETE";
-        case SSRequestMethodPATCH:
-            return @"PATCH";
-            
-        default:
-            return @"GET";
-    }
-}
 
 // MARK:- 下载缓存路径
 /*
  获取完整的下载缓存路径
  */
 - (NSURL *)_fullDownloadCachePathUrl:(NSString *)downloadPath {
-    NSString *md5PathString = [NSString md5StringFromCString:downloadPath];
+    NSString *md5PathString = [downloadPath md5StringFromCString];
     NSString *fullPathString = [[NSString defaultDownloadTempCacheFolder] stringByAppendingString:md5PathString];
     NSURL *resumeDataPathUrl = [NSURL fileURLWithPath:fullPathString];
     
@@ -526,6 +509,10 @@ void runOnMainQueue(void (^block)(void)) {
 
 
 #pragma mark - get method
+- (NSArray *)plugins {
+    return [SSRequestSettingConfig defaultSettingConfig].plugins;
+}
+
 // 默认sessionManager
 - (AFHTTPSessionManager *)defaultSessionManager {
     if (!_defaultSessionManager) {
@@ -543,7 +530,7 @@ void runOnMainQueue(void (^block)(void)) {
         _authenticationSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
         // 待实现验证 todo
-        AFSecurityPolicy *tspSlecialSecurityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+//        AFSecurityPolicy *tspSlecialSecurityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
 //        NSMutableSet *certSetSpecial = [[NSMutableSet alloc]init];
 //        #if (defined DEBUG) || (defined TEST)
 //                [certSetSpecial addObjectsFromArray:[MQTTCer pinnedCertificatesForEnv: MQTTCerEvnDev]];
@@ -565,8 +552,7 @@ void runOnMainQueue(void (^block)(void)) {
 //            }
 //            return nil;
 //        }];
-        
-        _authenticationSessionManager.securityPolicy = tspSlecialSecurityPolicy;
+//        _authenticationSessionManager.securityPolicy = tspSlecialSecurityPolicy;
     }
     
     return _authenticationSessionManager;

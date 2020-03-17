@@ -15,5 +15,6 @@
 #import "SSRequestErrorFilterPlugin.h"
 #import "SSRequestSignPlugin.h"
 #import "SSRequestTokenPlugin.h"
+#import "NSString+SSRequest.h"
 
 #endif /* SSRequestKit_h */

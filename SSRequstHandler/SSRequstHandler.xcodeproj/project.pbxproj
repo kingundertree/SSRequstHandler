@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171E8F16242096E100A1A599 /* NSString+FFHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 171E8F15242096E100A1A599 /* NSString+FFHome.m */; };
+		1775ED432420B5EF006BA980 /* FFHomePostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1775ED422420B5EF006BA980 /* FFHomePostApi.m */; };
 		17D1D9E324189A1A00653D56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1D9E224189A1A00653D56 /* AppDelegate.m */; };
 		17D1D9E924189A1A00653D56 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1D9E824189A1A00653D56 /* ViewController.m */; };
 		17D1D9EC24189A1A00653D56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D1D9EA24189A1A00653D56 /* Main.storyboard */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171E8F14242096E100A1A599 /* NSString+FFHome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+FFHome.h"; sourceTree = "<group>"; };
+		171E8F15242096E100A1A599 /* NSString+FFHome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+FFHome.m"; sourceTree = "<group>"; };
+		1775ED412420B5EF006BA980 /* FFHomePostApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFHomePostApi.h; sourceTree = "<group>"; };
+		1775ED422420B5EF006BA980 /* FFHomePostApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFHomePostApi.m; sourceTree = "<group>"; };
 		17D1D9DE24189A1A00653D56 /* SSRequstHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSRequstHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D1D9E124189A1A00653D56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		17D1D9E224189A1A00653D56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +80,10 @@
 				17D1D9E824189A1A00653D56 /* ViewController.m */,
 				17D1DA1D241A1D3E00653D56 /* FFHomeApi.h */,
 				17D1DA1E241A1D3E00653D56 /* FFHomeApi.m */,
+				1775ED412420B5EF006BA980 /* FFHomePostApi.h */,
+				1775ED422420B5EF006BA980 /* FFHomePostApi.m */,
+				171E8F14242096E100A1A599 /* NSString+FFHome.h */,
+				171E8F15242096E100A1A599 /* NSString+FFHome.m */,
 				17D1D9EA24189A1A00653D56 /* Main.storyboard */,
 				17D1D9ED24189A1C00653D56 /* Assets.xcassets */,
 				17D1D9EF24189A1C00653D56 /* LaunchScreen.storyboard */,
@@ -240,6 +250,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				17D1D9E924189A1A00653D56 /* ViewController.m in Sources */,
+				1775ED432420B5EF006BA980 /* FFHomePostApi.m in Sources */,
+				171E8F16242096E100A1A599 /* NSString+FFHome.m in Sources */,
 				17D1D9E324189A1A00653D56 /* AppDelegate.m in Sources */,
 				17D1DA1F241A1D3E00653D56 /* FFHomeApi.m in Sources */,
 				17D1D9F424189A1C00653D56 /* main.m in Sources */,
@@ -390,6 +402,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 6.4.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"SSRequstHandler\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.freshfresh.SSRequstHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -407,6 +428,15 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 6.4.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"SSRequstHandler\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.freshfresh.SSRequstHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -68,5 +68,6 @@ s.source           = { :git => '', :tag => s.version.to_s }
   end
   
   s.dependency 'AFNetworking'
+  s.dependency 'SwiftyJSON'
   
 end

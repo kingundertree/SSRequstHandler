@@ -8,14 +8,15 @@
 #import "SSBaseApi.h"
 #import "SSRequestHandler.h"
 #import "SSRequestSettingConfig.h"
+#import "SSRequestService.h"
 
 @interface SSBaseApi ()
 @property (nonatomic, copy) NSString *appVersion;
 @property (nonatomic, copy) NSString *region;
 @property (nonatomic, copy) NSString *lang;
 @property (nonatomic, copy) NSString *appId;
-@property (nonatomic, assign) NSTimeInterval timestamp;
 @property (nonatomic, copy) NSString *deviceId;
+@property (nonatomic, assign) NSTimeInterval timestamp;
 @end
 
 @implementation SSBaseApi
@@ -74,6 +75,7 @@
     return SSRequestMethodGET;
 }
 
+
 - (SSRequestConstructingBlock)constructingBlock {
     return nil;
 }
@@ -84,13 +86,13 @@
 
 - (id)requestArgument {
     if (self.queries.allKeys.count > 0) {
-        self.queries;
+        return self.queries;
     }
     return nil;
 }
 
 - (SSRequestService *)service {
-    return [[SSRequestService alloc] initWithBaseUrl:@"https://frefresh.com"];
+    return nil;
 }
 
 - (SSRequestSerialzerType)requestSerializerType {
@@ -119,10 +121,21 @@
              @"region": self.region,
              @"lang": self.lang,
              @"appVersion": self.appVersion,
-             @"timestamp" : @(self.timestamp),
-             @"deviceId": self.deviceId
+             @"timeStamp" : [self getNowFormateDate],
+             @"deviceId": self.deviceId,
+             @"device": @"iOS"
              };
 }
+
+- (NSString *)getNowFormateDate {
+    NSDate *nowDate = [NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *nowDateStr = [dateformatter stringFromDate:nowDate];
+    
+    return nowDateStr;
+}
+
 
 #pragma mark - method
 - (void)requestWithCompletionBlock:(SSRequestHandlerCallback)requestHandlerCallback {

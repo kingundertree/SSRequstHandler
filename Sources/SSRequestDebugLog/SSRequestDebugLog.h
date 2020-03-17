@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SSBaseApi.h"
+#import "SSResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 - (void)debugInfo:(id)object;
+
+// 打印请求前信息
+- (void)showReponseStartInfo:(SSBaseApi *)baseApi request:(NSURLRequest *)request;
+// 打印请求结束信息
+- (void)showReponseEndInfo:(SSBaseApi *)baseApi response:(SSResponse *)response request:(NSURLRequest *)request;
 
 @end
 

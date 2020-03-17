@@ -28,23 +28,22 @@
     NSString *secret = [SSRequestSettingConfig defaultSettingConfig].secret ?: @"";
     NSString *wilSignString = [NSString stringWithFormat:@"%@%@?%@%@%@", method, path, queryAndBodyString, secret, token];
     
-    NSString *sign = [NSString md5StringFromCString:wilSignString];
+    NSString *sign = [wilSignString md5StringFromCString];
     if (sign) {
         [components appendingQuery:[[NSURLQueryItem alloc] initWithName:@"sign" value:sign]];
     
         NSMutableURLRequest *requestCopy = [reqeust mutableCopy];
         requestCopy.URL = components.URL;
-
-        return reqeust;
+        return requestCopy;
     }
     
     return nil;
 }
 
 - (NSString *)_queryAndBodyString:(NSURLComponents *)components
-                          method:(NSString *)method
-                      reqeust:(NSURLRequest *)reqeust {
-    NSMutableArray *revals = [self _unencodedItems:components];
+                           method:(NSString *)method
+                          reqeust:(NSURLRequest *)reqeust {
+    NSMutableArray *revals = [self _unencodedItems:components.percentEncodedQuery];
     if ([method isEqualToString:@"PUT"] || [method isEqualToString:@"POST"]) {
         NSString *contentEncoding = [reqeust valueForHTTPHeaderField:@"Content-Encoding"] ?: @"";
         if ([contentEncoding containsString:@"gzip"]) {
@@ -74,7 +73,10 @@
                 return [revals componentsJoinedByString:@"&"];
             }
         }
+        return nil;
     }
+    
+    return [revals componentsJoinedByString:@"&"];
 }
 
 - (NSMutableArray *)_unencodedItems:(NSString *)query {

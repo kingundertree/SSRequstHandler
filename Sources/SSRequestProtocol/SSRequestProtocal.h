@@ -15,7 +15,7 @@
 /*
  请求前预处理,SSBaseApi数据预处理
  */
-- (void)willPrepareRequestForBaseApi:(SSBaseApi *)baseApi;
+- (void)willPrepareRequestForBaseApi:(SSBaseApi *_Nullable)baseApi;
 
 /*
  请求前处理,NSURLRequest 进一步处理

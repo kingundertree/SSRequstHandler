@@ -6,8 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "SSBaseApi.h"
 
 @interface NSString (SSRequest)
 
@@ -15,8 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)defaultDownloadTempCacheFolder;
 
 // string md5计算
-+ (NSString *)md5StringFromCString:(NSString *)string;
+- (NSString *)md5StringFromCString;
+
+// 获取baseApi
++ (NSString *)requestUrlStringForBaseApi:(SSBaseApi *)baseApi;
+
+// 获取method string
++ (NSString *)methodMap:(SSRequestMethod)method;
 
 @end
-
-NS_ASSUME_NONNULL_END
