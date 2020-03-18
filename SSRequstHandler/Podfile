@@ -10,5 +10,4 @@ project 'SSRequstHandler'
 target 'SSRequstHandler' do
     pod 'AFNetworking', '~> 3.0'
     pod 'SSRequstHandler', :path => '../../SSRequstHandler'
-    pod 'SwiftyJSON', '5.0.0'
 end

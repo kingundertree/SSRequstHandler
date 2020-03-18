@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7FCAA64725C3C4802594EAE09D653772"
+               BlueprintIdentifier = "9810B9E919E64EBDC10CFF5CD454A6C2"
                BuildableName = "libSSRequstHandler.a"
                BlueprintName = "SSRequstHandler"
                ReferencedContainer = "container:Pods.xcodeproj">

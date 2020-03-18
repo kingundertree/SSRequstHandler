@@ -26,26 +26,38 @@ PODS:
     - SSRequstHandler/SSRequestProtocol (= 0.0.1)
     - SSRequstHandler/SSRequestSetting (= 0.0.1)
     - SSRequstHandler/SSResponse (= 0.0.1)
+    - SwiftyJSON
   - SSRequstHandler/Category (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/Others (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSBaseApi (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestDebugLog (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestError (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestHandler (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestPlugin (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestProtocol (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSRequestSetting (0.0.1):
     - AFNetworking
+    - SwiftyJSON
   - SSRequstHandler/SSResponse (0.0.1):
     - AFNetworking
+    - SwiftyJSON
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -57,7 +69,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  SSRequstHandler: 61bde1044f69e51b313989fcdde695a295f418de
+  SSRequstHandler: ee4ad0a69faa6bfdc4ab2a07788fdb430763decf
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
 PODFILE CHECKSUM: 8fc51ed4cdfc5587ec3faeef9aedc34d5564b53d
 

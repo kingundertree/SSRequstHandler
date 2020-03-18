@@ -1,14 +1,13 @@
 //
-//  SSRequestKit.h
+//  SSRequestHandler.h
 //  Pods
 //
 //  Created by ixiazer on 2020/3/12.
 //
 
-#ifndef SSRequestKit_h
-#define SSRequestKit_h
+#import <Foundation/Foundation.h>
 
-#import "SSRequestHandler.h"
+#import "SSRequestHandlerManager.h"
 #import "SSResponse.h"
 #import "SSBaseApi.h"
 #import "SSRequestSettingConfig.h"
@@ -17,4 +16,8 @@
 #import "SSRequestTokenPlugin.h"
 #import "NSString+SSRequest.h"
 
-#endif /* SSRequestKit_h */
+
+#ifndef SSRequestHandler_h
+#define SSRequestHandler_h
+
+#endif /* SSRequestHandler_h */

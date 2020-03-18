@@ -21,6 +21,9 @@
   "dependencies": {
     "AFNetworking": [
 
+    ],
+    "SwiftyJSON": [
+
     ]
   },
   "subspecs": [

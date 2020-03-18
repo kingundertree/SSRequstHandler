@@ -13,10 +13,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSInteger, SSRequestHandlerSessionType) {
     SSRequestHandlerSessionTypeForDefault, // 默认
     SSRequestHandlerSessionTypeForAuthentication, // 需要自建TSP认证
-} SSRequestHandlerSessionType;
+} ;
 
 
 typedef NS_ENUM(NSInteger, SSRequestSerialzerType) {

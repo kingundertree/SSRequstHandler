@@ -5,7 +5,7 @@
 //  Created by ixiazer on 2020/3/11.
 //
 
-#import "SSRequestHandler.h"
+#import "SSRequestHandlerManager.h"
 #import <pthread/pthread.h>
 #import "NSString+SSRequest.h"
 #import "NSObject+SSRequest.h"
@@ -28,7 +28,7 @@ void runOnMainQueue(void (^block)(void)) {
     }
 };
 
-@interface SSRequestHandler ()
+@interface SSRequestHandlerManager ()
 @property (nonatomic, strong) NSMutableDictionary *mutDicForSaveBaseApiWithIdentify;
 
 @property (nonatomic, strong) AFHTTPSessionManager *defaultSessionManager;
@@ -37,16 +37,16 @@ void runOnMainQueue(void (^block)(void)) {
 @property (nonatomic, strong) AFXMLParserResponseSerializer *xmlParserResponseSerialzier;
 @end
 
-@implementation SSRequestHandler {
+@implementation SSRequestHandlerManager {
     pthread_mutex_t m_lock; // 代替NSLock，锁性能高一些
 }
 
 // MARK: - life event
-+ (SSRequestHandler *)defaultHandler {
-    static SSRequestHandler *defaultHandler = nil;
++ (SSRequestHandlerManager *)defaultHandler {
+    static SSRequestHandlerManager *defaultHandler = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        defaultHandler = [[SSRequestHandler alloc] init];
+        defaultHandler = [[SSRequestHandlerManager alloc] init];
     });
     
     return defaultHandler;

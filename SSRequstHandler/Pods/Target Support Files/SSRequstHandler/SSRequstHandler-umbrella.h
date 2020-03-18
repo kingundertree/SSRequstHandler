@@ -11,7 +11,7 @@
 #endif
 
 #import "SSRequestConfig.h"
-#import "SSRequestKit.h"
+#import "SSRequestHandler.h"
 #import "NSError+SSRequest.h"
 #import "NSHTTPURLResponse+SSRequest.h"
 #import "NSObject+SSRequest.h"
@@ -24,7 +24,7 @@
 #import "SSRequestService.h"
 #import "SSRequestDebugLog.h"
 #import "SSRequestError.h"
-#import "SSRequestHandler.h"
+#import "SSRequestHandlerManager.h"
 #import "SSRequestSerializer.h"
 #import "SSRequestErrorFilterPlugin.h"
 #import "SSRequestSignPlugin.h"

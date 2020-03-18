@@ -140,11 +140,11 @@
 #pragma mark - method
 - (void)requestWithCompletionBlock:(SSRequestHandlerCallback)requestHandlerCallback {
     self.requestHandlerCallback = requestHandlerCallback;
-    [[SSRequestHandler defaultHandler] doRequestOnQueue:self];
+    [[SSRequestHandlerManager defaultHandler] doRequestOnQueue:self];
 }
 
 - (void)cancelRequest {
-    [[SSRequestHandler defaultHandler] cancleRequest:self];
+    [[SSRequestHandlerManager defaultHandler] cancleRequest:self];
 }
 
 #pragma mark - get method

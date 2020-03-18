@@ -1,5 +1,5 @@
 //
-//  SSRequestHandler.h
+//  SSRequestHandlerManager.h.h
 //  AFNetworking
 //
 //  Created by ixiazer on 2020/3/11.
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * (^SSRequestQueryStringSerializationBlock)(NSURLRequest *request, id parameters, NSError *__autoreleasing *error);
 
-@interface SSRequestHandler : NSObject
+@interface SSRequestHandlerManager : NSObject
 
 // params
 /*
@@ -27,7 +27,7 @@ typedef NSString * (^SSRequestQueryStringSerializationBlock)(NSURLRequest *reque
 // queryStringSerializer block
 @property (nonatomic, copy) SSRequestQueryStringSerializationBlock queryStringSerializationBlock;
 
-+ (SSRequestHandler *)defaultHandler;
++ (SSRequestHandlerManager *)defaultHandler;
 
 /*
  创建请求
