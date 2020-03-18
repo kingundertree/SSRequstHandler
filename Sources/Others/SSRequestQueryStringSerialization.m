@@ -6,8 +6,12 @@
 //
 
 #import "SSRequestQueryStringSerialization.h"
-#import "AFNetworking.h"
 #import "SSRequestQueryStringSerialization.h"
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#else
+#import "AFNetworking.h"
+#endif
 
 @implementation SSRequestQueryStringSerialization
 

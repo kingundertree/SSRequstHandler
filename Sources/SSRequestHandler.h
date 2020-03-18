@@ -16,6 +16,11 @@
 #import "SSRequestTokenPlugin.h"
 #import "NSString+SSRequest.h"
 
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#else
+#import "AFNetworking.h"
+#endif
 
 #ifndef SSRequestHandler_h
 #define SSRequestHandler_h

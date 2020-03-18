@@ -9,7 +9,6 @@
 #import "SSBaseApi.h"
 #import "SSResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 #ifdef DEBUG
 #    define SSLog(fmt, ...) NSLog((@"%s #%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -31,4 +30,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END

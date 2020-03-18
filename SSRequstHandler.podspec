@@ -14,7 +14,7 @@ s.source           = { :git => '', :tag => s.version.to_s }
 
   s.source_files        = 'Sources/*.h'
   s.public_header_files = 'Sources/*.h'
-  s.static_framework = true
+#  s.static_framework = true
 #  s.ios.resources = ["Resources/**/*.{png,json}","Resources/*.{html,png,json}", "Resources/*.{xcassets, json}", "Sources/**/*.xib"]
 
   s.subspec 'Category' do |ss|

@@ -42,7 +42,7 @@
 }
 
 - (SSRequestHandlerSessionType)sessionType {
-    return SSRequestHandlerSessionTypeForDefault;
+    return SSRequestHandlerSessionTypeDefault;
 }
 
 - (NSTimeInterval)requestTimeoutInterval {
@@ -95,12 +95,12 @@
     return nil;
 }
 
-- (SSRequestSerialzerType)requestSerializerType {
-    return SSRequestSerialzerTypeHTTP;
+- (SSRequestSerializerType)requestSerializerType {
+    return SSRequestSerializerTypeHTTP;
 }
 
-- (SSResponseSerialzerType)responseSerializerType {
-    return SSResponseSerialzerTypeJSON;
+- (SSResponseSerializerType)responseSerializerType {
+    return SSResponseSerializerTypeJSON;
 }
 
 - (NSIndexSet *)acceptStatusCode {
@@ -135,7 +135,6 @@
     
     return nowDateStr;
 }
-
 
 #pragma mark - method
 - (void)requestWithCompletionBlock:(SSRequestHandlerCallback)requestHandlerCallback {

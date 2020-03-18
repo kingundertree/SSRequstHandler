@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "SSBaseApi.h"
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface SSRequestSerializer : NSObject
 
@@ -16,4 +16,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+

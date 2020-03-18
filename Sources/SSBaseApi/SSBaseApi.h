@@ -9,28 +9,30 @@
 #import "SSRequestConfig.h"
 #import "SSResponse.h"
 #import "SSRequestService.h"
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#else
 #import "AFNetworking.h"
-
-NS_ASSUME_NONNULL_BEGIN
+#endif
 
 typedef NS_ENUM(NSInteger, SSRequestHandlerSessionType) {
-    SSRequestHandlerSessionTypeForDefault, // 默认
-    SSRequestHandlerSessionTypeForAuthentication, // 需要自建TSP认证
+    SSRequestHandlerSessionTypeDefault, // 默认
+    SSRequestHandlerSessionTypeAuthentication, // 需要自建TSP认证
 } ;
 
 
-typedef NS_ENUM(NSInteger, SSRequestSerialzerType) {
-    SSRequestSerialzerTypeHTTP = 0,
-    SSRequestSerialzerTypeText = 1,
-    SSRequestSerialzerTypeJSON = 2,
-    SSRequestSerialzerTypeXML = 3
+typedef NS_ENUM(NSInteger, SSRequestSerializerType) {
+    SSRequestSerializerTypeHTTP = 0,
+    SSRequestSerializerTypeText = 1,
+    SSRequestSerializerTypeJSON = 2,
+    SSRequestSerializerTypeXML = 3
 };
 
-typedef NS_ENUM(NSInteger, SSResponseSerialzerType) {
-    SSResponseSerialzerTypeHTTP = 0,
-    SSResponseSerialzerTypeText = 1,
-    SSResponseSerialzerTypeJSON = 2,
-    SSResponseSerialzerTypeXML = 3
+typedef NS_ENUM(NSInteger, SSResponseSerializerType) {
+    SSResponseSerializerTypeHTTP = 0,
+    SSResponseSerializerTypeText = 1,
+    SSResponseSerializerTypeJSON = 2,
+    SSResponseSerializerTypeXML = 3
 };
 
 typedef NS_ENUM(NSUInteger, SSRequestMethod) {
@@ -44,43 +46,43 @@ typedef NS_ENUM(NSUInteger, SSRequestMethod) {
 /*
  请求结束回调
  */
-typedef void (^SSRequestHandlerCallback)(SSResponse *response, NSError *error);
+typedef void (^SSRequestHandlerCallback)(SSResponse * _Nullable response, NSError * _Nullable error);
 
 /*
  下载进度回调
  */
-typedef void (^SSRequestHandlerProgressBlock)(NSProgress *progress);
+typedef void (^SSRequestHandlerProgressBlock)(NSProgress * _Nullable progress);
 
 /*
  上传数据组合
 */
-typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> formData);
+typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> _Nullable formData);
 
 
 @interface SSBaseApi : NSObject
 
 // 绑定BaseApi 创建的task，执行resume、canlce等操作
-@property (nonatomic, strong) NSURLSessionTask *requestTask;
+@property (nonatomic, strong) NSURLSessionTask * _Nullable requestTask;
 // request callback
-@property (nonatomic, copy) SSRequestHandlerCallback requestHandlerCallback;
+@property (nonatomic, copy) SSRequestHandlerCallback _Nullable requestHandlerCallback;
 // download process callback
-@property (nonatomic, copy) SSRequestHandlerProgressBlock progressCallback;
+@property (nonatomic, copy) SSRequestHandlerProgressBlock _Nullable progressCallback;
 // request path
 @property (nonatomic, copy) NSString *path;
 // 自定义入参实现, swift 可以通过subscript实现。不直接合并到URL，待后续POST、GET继续处理
-@property (nonatomic, strong) NSMutableDictionary *queries;
+@property (nonatomic, strong) NSMutableDictionary * _Nullable queries;
 
 // BaseApi 初始化
-- (instancetype)initWithPath:(NSString *)path queries:(NSDictionary *)queries;
+- (instancetype _Nullable )initWithPath:(NSString *_Nullable)path queries:(NSDictionary *_Nullable)queries;
 
 // 通过SSBaseApi发生请求
-- (void)requestWithCompletionBlock:(SSRequestHandlerCallback)requestHandlerCallback;
+- (void)requestWithCompletionBlock:(SSRequestHandlerCallback _Nullable )requestHandlerCallback;
 
 // 取消请求
 - (void)cancelRequest;
 
 // 下载数据的缓存地址
-- (NSString *)downloadPath;
+- (NSString *_Nullable)downloadPath;
 
 // sesstion配置type
 - (SSRequestHandlerSessionType)sessionType;
@@ -95,40 +97,42 @@ typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> formData);
 - (BOOL)allowsCellularAccess;
 
 // 认证信息
-- (NSArray *)requestAuthorizationHeaderFieldArray;
+- (NSArray *_Nullable)requestAuthorizationHeaderFieldArray;
 
 // 自定义header参数
-- (NSDictionary *)requestHeaderFieldValueDictionary;
+- (NSDictionary *_Nullable)requestHeaderFieldValueDictionary;
 
 // 请求服务，定义默认host
-- (SSRequestService *)service;
+- (SSRequestService *_Nullable)service;
 
 // 请求method，可以为完整的url
-- (NSString *)requestPath;
+- (NSString *_Nullable)requestPath;
 
 // method type
 - (SSRequestMethod)mehod;
 
 // request params
-- (id)requestArgument;
+- (id _Nullable )requestArgument;
 
 // download data process
-- (SSRequestConstructingBlock)constructingBlock;
+- (SSRequestConstructingBlock _Nullable )constructingBlock;
 
 // requestSerializer
-- (SSRequestSerialzerType)requestSerializerType;
+- (SSRequestSerializerType)requestSerializerType;
 
 // responseSerializer
-- (SSResponseSerialzerType)responseSerializerType;
+- (SSResponseSerializerType)responseSerializerType;
 
 // 默认errorcode
-- (NSIndexSet *)acceptStatusCode;
+- (NSIndexSet *_Nullable)acceptStatusCode;
 
 // response校验
-- (NSError *)validateResponse:(id)response;
+- (NSError *_Nullable)validateResponse:(id _Nullable )response;
 
 // 自定义errorCode和errorMessage
-- (NSDictionary *)resultCodeMap;
+- (NSDictionary *_Nullable)resultCodeMap;
+
+// 公共参数
+- (NSDictionary *_Nullable)queryParamForPublic;
 @end
 
-NS_ASSUME_NONNULL_END

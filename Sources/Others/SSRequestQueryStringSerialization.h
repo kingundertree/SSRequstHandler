@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface SSRequestQueryStringSerialization : NSObject
 
 + (NSArray *)queryStringPairsFromKey:(NSString *)key andValue:(id) value;
@@ -25,5 +23,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)stringValueWithURLEncode:(BOOL)encode;
 @end
 
-
-NS_ASSUME_NONNULL_END

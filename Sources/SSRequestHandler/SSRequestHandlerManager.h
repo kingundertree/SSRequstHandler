@@ -7,11 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SSRequestConfig.h"
-#import "AFNetworking.h"
 #import "SSBaseApi.h"
 #import "SSRequestQueryStringSerialization.h"
-
-NS_ASSUME_NONNULL_BEGIN
 
 
 typedef NSString * (^SSRequestQueryStringSerializationBlock)(NSURLRequest *request, id parameters, NSError *__autoreleasing *error);
@@ -47,4 +44,3 @@ typedef NSString * (^SSRequestQueryStringSerializationBlock)(NSURLRequest *reque
 
 @end
 
-NS_ASSUME_NONNULL_END

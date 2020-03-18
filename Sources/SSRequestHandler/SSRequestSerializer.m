@@ -6,7 +6,11 @@
 //
 
 #import "SSRequestSerializer.h"
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#else
 #import "AFNetworking.h"
+#endif
 
 @implementation SSRequestSerializer
 
@@ -14,9 +18,9 @@
     AFHTTPRequestSerializer *requestSerializer = nil;
     
     // 暂时只处理HTTP和JSON request 序列化
-    if (baseApi.requestSerializerType == SSRequestSerialzerTypeHTTP) {
+    if (baseApi.requestSerializerType == SSRequestSerializerTypeHTTP) {
         requestSerializer = [AFHTTPRequestSerializer serializer];
-    } else if (baseApi.requestSerializerType == SSRequestSerialzerTypeJSON) {
+    } else if (baseApi.requestSerializerType == SSRequestSerializerTypeJSON) {
         requestSerializer = [AFJSONRequestSerializer serializer];
     }
     

@@ -354,14 +354,13 @@ void runOnMainQueue(void (^block)(void)) {
 }
 
 // MARK:- responseSerial 处理
-- (id)_responseObjectSerializer:(NSURLResponse *)response responseObject:(id)responseObject  responseSerializerType:(SSResponseSerialzerType)responseSerializerType error:(NSError * _Nullable __autoreleasing *)error {
+- (id)_responseObjectSerializer:(NSURLResponse *)response responseObject:(id)responseObject  responseSerializerType:(SSResponseSerializerType)responseSerializerType error:(NSError * _Nullable __autoreleasing *)error {
     id resultObject;
     switch (responseSerializerType) {
-        case SSResponseSerialzerTypeJSON:
+        case SSResponseSerializerTypeJSON:
             return [self.jsonResponseSerializer responseObjectForResponse:response data:responseObject error:&error];
             
-            break;
-        case SSResponseSerialzerTypeXML:
+        case SSResponseSerializerTypeXML:
             return [self.xmlParserResponseSerialzier responseObjectForResponse:response data:responseObject error:&error];
         default:
             return nil;
@@ -405,9 +404,9 @@ void runOnMainQueue(void (^block)(void)) {
         return nil;
     }
     
-    SSRequestHandlerSessionType sessionType = SSRequestHandlerSessionTypeForDefault;
+    SSRequestHandlerSessionType sessionType = SSRequestHandlerSessionTypeDefault;
     if (session == self.authenticationSessionManager) {
-        sessionType = SSRequestHandlerSessionTypeForAuthentication;
+        sessionType = SSRequestHandlerSessionTypeAuthentication;
     }
     
     NSString *sesstionKey = [self _combineBaseApiKey:sessionType identifier:task.taskIdentifier];
@@ -473,7 +472,7 @@ void runOnMainQueue(void (^block)(void)) {
  */
 - (AFURLSessionManager *)_sesionForBaseApi:(SSBaseApi *)baseApi {
     switch (baseApi.sessionType) {
-        case SSRequestHandlerSessionTypeForAuthentication:
+        case SSRequestHandlerSessionTypeAuthentication:
             return self.authenticationSessionManager;
             
         default:

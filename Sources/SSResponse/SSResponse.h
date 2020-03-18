@@ -6,9 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#if __has_include(<AFNetworking/AFNetworking.h>)
+#import <AFNetworking/AFNetworking.h>
+#else
 #import "AFNetworking.h"
-
-NS_ASSUME_NONNULL_BEGIN
+#endif
 
 @interface SSResponse : NSObject
 
@@ -28,4 +30,3 @@ NS_ASSUME_NONNULL_BEGIN
                               error:(NSError * _Nullable __autoreleasing *)error;
 @end
 
-NS_ASSUME_NONNULL_END
