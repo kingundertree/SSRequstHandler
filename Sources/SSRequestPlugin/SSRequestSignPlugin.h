@@ -8,8 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "SSRequestProtocal.h"
 
-
-
 @interface SSRequestSignPlugin : NSObject <SSRequestProtocal>
 
 @end

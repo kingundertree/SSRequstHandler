@@ -9,6 +9,7 @@
 #import "SSResponse.h"
 #import "SSBaseApi.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol SSRequestProtocal <NSObject>
 
 @optional
@@ -38,3 +39,5 @@
 - (BOOL)processionResponse:(SSResponse *)response baseApi:(SSBaseApi *)baseApi error:(NSError * _Nullable __autoreleasing *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

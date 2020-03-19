@@ -28,17 +28,29 @@
         if (queries) {
             self.queries = queries;
         }
-        
-        // 公共参数初始化
-        _appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        _region = @"cn";
-        _lang = @"zh-cn";
-        _appId = [SSRequestSettingConfig defaultSettingConfig].appId;
-        _timestamp = (long long)([[NSDate date]timeIntervalSince1970]);
-        _deviceId = [SSRequestSettingConfig defaultSettingConfig].deviceId;
+        [self doConfigInit];
     }
 
     return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self doConfigInit];
+    }
+
+    return self;
+}
+
+- (void)doConfigInit {
+    // 公共参数初始化
+    self.appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self.region = @"cn";
+    self.lang = @"zh-cn";
+    self.appId = [SSRequestSettingConfig defaultSettingConfig].appId;
+    self.timestamp = (long long)([[NSDate date]timeIntervalSince1970]);
+    self.deviceId = [SSRequestSettingConfig defaultSettingConfig].deviceId;
 }
 
 - (SSRequestHandlerSessionType)sessionType {
@@ -92,7 +104,7 @@
 }
 
 - (SSRequestService *)service {
-    return nil;
+    return [[SSRequestService alloc] initWithBaseUrl:@"https://wx.freshfresh.com"];
 }
 
 - (SSRequestSerializerType)requestSerializerType {

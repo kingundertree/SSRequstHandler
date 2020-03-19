@@ -15,6 +15,7 @@
 #import "AFNetworking.h"
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, SSRequestHandlerSessionType) {
     SSRequestHandlerSessionTypeDefault, // 默认
     SSRequestHandlerSessionTypeAuthentication, // 需要自建TSP认证
@@ -136,3 +137,4 @@ typedef void (^SSRequestConstructingBlock)(id<AFMultipartFormData> _Nullable for
 - (NSDictionary *_Nullable)queryParamForPublic;
 @end
 
+NS_ASSUME_NONNULL_END

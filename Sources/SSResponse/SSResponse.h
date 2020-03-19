@@ -12,6 +12,8 @@
 #import "AFNetworking.h"
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SSResponse : NSObject
 
 @property (nonatomic, strong, readonly) NSData *data;
@@ -30,3 +32,4 @@
                               error:(NSError * _Nullable __autoreleasing *)error;
 @end
 
+NS_ASSUME_NONNULL_END

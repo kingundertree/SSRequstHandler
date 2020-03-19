@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SSBaseApi.h"
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (SSRequest)
 
 + (BOOL)validateResumeData:(NSData *)data;
@@ -18,3 +18,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END
