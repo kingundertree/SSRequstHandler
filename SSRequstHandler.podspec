@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
   s.name         = "SSRequstHandler"
   s.version      = "0.0.1"
-  s.summary      = "A short description of SSRequstHandler."
+  s.summary      = "基于AFNetWorking封装的OC版本请求框架，通过plugin模式实现灵活的业务自定义。"
   s.description  = <<-DESC
                     Hi, SSRequstHandler!
                    DESC
-  s.homepage     = "git@gitee.com:xiazer/SSRequstHandler.git"
+  s.homepage     = "git@github.com:kingundertree/SSRequstHandler.git"
   s.license      = "MIT"
   s.author       = { "Summer Solstice" => "kingundertree@163.com" }
   s.platform     = :ios, "9.0"
-#  s.source       = { :git => "git@gitee.com:xiazer/SSRequstHandler.git", :tag => "#{s.version}" }
+#  s.source       = { :git => "git@github.com:kingundertree/SSRequstHandler.git", :tag => "#{s.version}" }
 s.source           = { :git => '', :tag => s.version.to_s }
 
   s.source_files        = 'Sources/*.h'
@@ -68,6 +68,5 @@ s.source           = { :git => '', :tag => s.version.to_s }
   end
   
   s.dependency 'AFNetworking'
-  s.dependency 'SwiftyJSON'
   
 end
