@@ -8,8 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "SSRequestProtocal.h"
 
-
-
 @interface SSRequestTokenPlugin : NSObject <SSRequestProtocal>
 
 - (NSURLRequest *)prepareRequestForBaseApi:(NSURLRequest *)reqeust baseApi:(SSBaseApi *)baseApi;

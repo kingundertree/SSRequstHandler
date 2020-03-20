@@ -492,8 +492,6 @@ void runOnMainQueue(void (^block)(void)) {
 }
 
 // MARK:- request host + path
-
-
 // MARK:- 下载缓存路径
 /*
  获取完整的下载缓存路径

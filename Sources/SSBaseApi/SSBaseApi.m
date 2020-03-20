@@ -104,7 +104,7 @@
 }
 
 - (SSRequestService *)service {
-    return [[SSRequestService alloc] initWithBaseUrl:@"https://wx.freshfresh.com"];
+    return [SSRequestSettingConfig defaultSettingConfig].service ?: [[SSRequestService alloc] initWithBaseUrl:@"https://**.******.com"];
 }
 
 - (SSRequestSerializerType)requestSerializerType {

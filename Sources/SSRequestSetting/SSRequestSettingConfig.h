@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SSRequestService.h"
 
 @interface SSRequestSettingConfig : NSObject
 
@@ -29,6 +29,9 @@
 
 // isOpen debug
 @property (nonatomic, assign) BOOL isShowDebugInfo;
+
+// defaultService host
+@property (nonatomic, strong) SSRequestService *service;
 
 @end
 
