@@ -1,0 +1,77 @@
+{
+  "name": "SSRequstHandler",
+  "version": "0.0.1",
+  "summary": "基于AFNetWorking封装的OC版本请求框架，通过plugin模式实现灵活的业务自定义。",
+  "description": "Hi, SSRequstHandler!",
+  "homepage": "git@github.com:kingundertree/SSRequstHandler.git",
+  "license": "MIT",
+  "authors": {
+    "Summer Solstice": "kingundertree@163.com"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "",
+    "tag": "0.0.1"
+  },
+  "source_files": "Sources/*.h",
+  "public_header_files": "Sources/*.h",
+  "dependencies": {
+    "AFNetworking": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Category",
+      "source_files": "Sources/Category/*.{h,m,swift}",
+      "public_header_files": "Sources/Category/*.h"
+    },
+    {
+      "name": "SSBaseApi",
+      "source_files": "Sources/SSBaseApi/*.{h,m,swift}",
+      "public_header_files": "Sources/SSBaseApi/*.h"
+    },
+    {
+      "name": "SSRequestPlugin",
+      "source_files": "Sources/SSRequestPlugin/*.{h,m,swift}",
+      "public_header_files": "Sources/SSRequestPlugin/*.h"
+    },
+    {
+      "name": "SSRequestProtocol",
+      "source_files": "Sources/SSRequestProtocol/*.{h,m,swift}",
+      "public_header_files": "SSRequestProtocol/Log/*.h"
+    },
+    {
+      "name": "SSResponse",
+      "source_files": "Sources/SSResponse/*.{h,m,swift}",
+      "public_header_files": "Sources/SSResponse/*.h"
+    },
+    {
+      "name": "SSRequestError",
+      "source_files": "Sources/SSRequestError/*.{h,m,swift}",
+      "public_header_files": "Sources/SSRequestError/*.h"
+    },
+    {
+      "name": "SSRequestHandler",
+      "source_files": "Sources/SSRequestHandler/*.{h,m,swift}",
+      "public_header_files": "Sources/SSRequestHandler/*.h"
+    },
+    {
+      "name": "Others",
+      "source_files": "Sources/Others/*.{c,h,m,swift}",
+      "public_header_files": "Sources/Others/*.h"
+    },
+    {
+      "name": "SSRequestSetting",
+      "source_files": "Sources/SSRequestSetting/*.{c,h,m,swift}",
+      "public_header_files": "Sources/SSRequestSetting/*.h"
+    },
+    {
+      "name": "SSRequestDebugLog",
+      "source_files": "Sources/SSRequestDebugLog/*.{c,h,m,swift}",
+      "public_header_files": "Sources/SSRequestDebugLog/*.h"
+    }
+  ]
+}
