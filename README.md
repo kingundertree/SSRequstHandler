@@ -36,7 +36,7 @@ __weak typeof(self) this = self;
 2. 通过SSBaseApi实现request的基本配置，实现host、path、params、serializer、mapCode、callback等
 3. 绑定NSURLSessionTask对象，SSBaseApi会存储在SSRequestHandlerManager的mutDicForSaveBaseApiWithIdentify，以NSURLSessionTask.taskIdentifier为标识。request结束会释放
 
-![ssbaseapi.png](http://note.youdao.com/yws/res/10267/WEBRESOURCE28019d45aa84827fc09248d6ed4b0a68)
+![ssbaseapi](https://github.com/kingundertree/SSRequstHandler/blob/develop/SSBaseApi.png?raw=true)
 
 #### SSRequestHandlerManager
 1. 单例对象，负责request的创建和执行。暴露方法比较少
