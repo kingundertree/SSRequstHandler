@@ -219,3 +219,6 @@ Response Data:
 3. SSBaseApi和SSResponse等都是业务支持需要的自定义实现
 
 ![ssrequesthandler.jpg](http://note.youdao.com/yws/res/10376/WEBRESOURCE20e5fd5334a2964327c7cdf1d801df5e)
+=======
+# SSRequstHandler
+基于AFNetWorking封装OC请求框架，灵活实现自定义请求。
